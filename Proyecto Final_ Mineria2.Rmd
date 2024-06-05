@@ -1,16 +1,22 @@
 ---
-title: "UNIVERSIDAD CATOLICA BOLIVIANA 'SAN PABLO' ", "PROYECTO FINAL - MINERÍA DE DATOS II"
-subtitle: "CLASIFICADOR DE NOTICIAS EN LA ECONOMÍA"
+title: "Clasificación y Análisis de Noticias Económicas, Políticas e Internacionales: Un Enfoque de Minería de Texto y Clasificación"
 author:
-- ' Gaya Enriquez Coronel'
-- ' Nataly Huanca Choque'
-- ' Valeria Rodriguez Segaline'
+- '* Gaya Enriquez Coronel'
+- '* Nataly Huanca Choque'
+- '* Valeria Rodriguez Segaline'
 date: "5 Junio 2024"
 output:
-  pdf_document: default
   html_document:
     df_print: paged
+  pdf_document: default
 ---
+# Resumen
+
+En este trabajo se desarrolla un clasificador de noticias de las secciones de economía, política e internacional de diferentes periódicos digitales de Bolivia. Utilizando técnicas de raspado web y minería de texto, se entrenó un modelo de clasificación basado en el algoritmo de Naive Bayes. Los resultados muestran una precisión del 50.63%, destacando la necesidad de mejoras adicionales en la clasificación de ciertas categorías de noticias.
+
+**Palabras clave**: Raspado web, Minería de texto, Método de clasificación Naive Bayes, Método CART, Base de datos
+
+**Códigos JEL**: C55, C81, L82, C63, C88
 
 ## 1. Introducción
 En el presente proyecto se realiza un clasificador de noticias de la sección de economía, política e internacional con el objetivo de clasificar noticias e interpretar las palabras más influyentes de cada noticia extraída. De este modo, este clasificador nos sirve para categorizar el tipo de palabras más influyentes además que se usa los tópicos aprendidos en la materia junto con la herramienta. 
@@ -28,25 +34,14 @@ Desarrollar un clasificador de noticias que realice un raspado web de diferentes
 
 # 3. Motivación 
 
-La motivación de este proyecto surge de la relevancia de la ciencia de datos en la carrera de Economía e inteligencia de negocios donde la ciencia de datos. La minería de texto y el raspado web son técnicas fundamentales para el análisis de datos, y su aplicación en este proyecto permite obtener resultados significativos en la clasificación de noticias de economía.Muy aparte el clasificador de noticias por el tipo de noticias en la sección de economía de diferentes periódicos. Se utiliza como métodos el raspado web, la minería de texto y el método de clasificación Naive Bayes.  Por otro lado, en el proyecto se sustenta la información de diferentes periódicos como, *La Razón*, *El Diario*, *Economy* y *El Mundo*.  
+La motivación de este proyecto surge de la relevancia de la ciencia de datos en la carrera de Economía e inteligencia de negocios donde la ciencia de datos. La minería de texto y el raspado web son técnicas fundamentales para el análisis de datos, y su aplicación en este proyecto permite obtener resultados significativos en la clasificación de noticias de economía, política e internacional.Esto porque es necesario tener un clasificar de noticias de este tipo para los periódicos digitales que siempre realizan esta distinción y podrían tender a preguntarse dónde colocar sus noticias.  
 
 
 # 4. Marco teórico
 
-## 4.1 Antecedentes
+## 4.1 Revisión de la literatura
 
- Para el proyecto se presentará diferentes tipos de periodico con la finalidad de tener una sección de economía, política e internacional en todas para la creación de la base de datos asimismo, para el análisis y creación de la tabla de palabras donde cada palabra cuantas veces es mencionada. A continuación se detalla los puntos más importantes de cada periodico a utilizar en el proyecto para la base de datos: 
-
-* La Razón: Uno de los periódicos más importantes de Bolivia, con una trayectoria destacada en el periodismo nacional. Fue fundado el 1 de marzo de 1990 por Jorge Canelas y Mario Frías, junto con diez inversionistas privados, bajo la gerencia de René Ferreira. Desde su creación, La Razón se ha posicionado como un diario influyente, especialmente en los ámbitos políticos, económicos y sociales del país.
-Sus oficinas centrales están localizadas en el barrio de Auquisamaña, en la zona sur de La Paz. Es uno de los diarios de mayor circulación en la capital boliviana junto con diarios como: Los Tiempos, El Deber y El Diario, etc. Desde su fundación, tuvo fuerte relevancia en los círculos políticos, económicos y sociales bolivianos.
-
-* El Diario: El periódico más antiguo de Bolivia que sigue en circulación, fundado el 5 de abril de 1904 por José Carrasco Torrico en la ciudad de La Paz. Desde sus inicios, el periódico ha mantenido una línea editorial conservadora, reflejando las ideologías de sus fundadores. En sus primeros años, El Diario se publicaba en la tarde, pero pronto cambió a una edición matutina, consolidándose como una fuente de noticias esencial para la población boliviana.
-A lo largo del siglo XX, El Diario se adaptó a varios cambios tecnológicos y políticos. En 1967, comenzó a imprimir algunas de sus páginas en color y, en la década siguiente, adoptó el sistema de impresión offset, mejorando la calidad y rapidez de sus publicaciones. Durante su trayectoria, el periódico ha enfrentado la suspensión temporal de sus publicaciones durante el gobierno de Juan José Torres en 1970, retomando sus actividades en septiembre de 1971.
-
-* Economy: El periódico Economy es una publicación dedicada a cubrir noticias sobre negocios, finanzas y economía en Bolivia y Sudamérica. Este periódico se enfoca en ofrecer contenido relevante sobre las últimas tendencias económicas, análisis de mercado, y noticias sobre empresas y finanzas. También ofrece reportajes sobre programas de capacitación para mujeres emprendedoras y la promoción de equidad de género en el sector empresarial. No se conoce una fecha de fundación. 
-
-* El Mundo: El periódico El Mundo fue fundado en Santa Cruz de la Sierra, el 17 de diciembre de 1989. Desde su creación, El Mundo se ha establecido como uno de los principales medios de comunicación en Bolivia, con un enfoque particular en noticias locales, nacionales e internacionales. El periódico ha sido una fuente importante de información para la población cruceña y ha jugado un papel crucial en la difusión de noticias relevantes y en la promoción de la cultura y el desarrollo local. El Mundo se ha caracterizado por su enfoque en temas de interés general, incluyendo política, economía, cultura y deportes. Su cobertura abarca tanto noticias locales de Santa Cruz como eventos nacionales e internacionales, también ha adoptado un enfoque investigativo, abordando temas importantes y controvertidos que afectan a la sociedad boliviana.
-
+La revisión de la literatura se enfoca en el uso de técnicas de minería de datos para el análisis de noticias. En el artículo "Uso de minería de datos para analizar las tendencias de consumo de noticias locales" por Revista Razón y Palabra, se demuestra cómo herramientas como Google Analytics pueden extraer y analizar datos sobre el consumo de noticias en línea, identificando tendencias y patrones en el comportamiento de los lectores. Por otro lado, el trabajo titulado "Minería de Datos, Conflictos Sociales y explotación de Recursos Naturales" por CONICET, investiga la utilización de técnicas de minería de datos para procesar y analizar grandes volúmenes de noticias relacionadas con conflictos sociales y la explotación de recursos naturales en Argentina. Ambos artículos subrayan la importancia de la minería de datos para extraer información significativa y patrones de grandes volúmenes de texto, alineándose con los objetivos de nuestro proyecto, que busca categorizar y analizar noticias de economía, política e internacional utilizando técnicas similares.
 
 ## 4.2 Bases teóricas
 
@@ -98,9 +93,6 @@ Donde el DTM es Document Term Matrix y el TDM es Term Document Matrix. La colecc
 
 Se apoya de un tratamiento de texto donde sus pasos para constituir un ejemplo de minería de texto son: configuración del idioma, cargado de librerías, corpus de interés, limpieza de texto (mayúsculas, minúsculas, puntuación, espacios, números, etc.) y el armado de DTM o TDM. 
 
-* **Análisis de sentimiento**: Es el proceso de extraer la intención emocional del autor de un texto. Se toma en cuenta lo siguiente: *Aspectos culturales, diferencias demográficas, texto con sentimientos compuestos.*
-
-Para el análisis de sentimiento se necesita un diccionario de emociones, donde uno de los más usados es de Robert Plutchik que se establece ocho sentimientos: **ira, miedo, tristeza, asco, sorpresa, anticipación, confianza y alegría** donde cuatro son negativas y las otras cuatro positivas. 
 
 ### 4.2.3 Métodos de clasificación 
 
@@ -128,17 +120,27 @@ Para el presente proyecto del clasificador de noticias se usará el método de c
 
 El método Naive Bayes es un clasificador probabilístico basado en el teorema de Bayes. Asume que las características son independientes entre sí, donde el simplificador hace que el clasificador sea muy eficiente. Donde este método nos demuestra la simplicidad y rapidez, funciona con grandes conjuntos de datos, requiere pocos datos para la estimación de parámetros. También por su simplicidad que es fácil de implementar y comprender.
 
+### 4.2.3.2 Método de Clasificación CART de Árboles de Decisión
+
+El método de Clasificación y Regresión de Árboles (CART) utiliza un árbol de decisión para predecir una variable objetivo basada en varios atributos de entrada. Divide repetidamente el conjunto de datos en subconjuntos basados en el atributo que mejor separa los datos, creando un árbol intuitivo y fácil de interpretar. Aunque es robusto y flexible, CART puede sobreajustarse, por lo que a menudo se emplean técnicas como la poda para mejorar su generalización.
+
 # 5. Descripción de la base de datos
 
-El proyecto tiene como base de datos individuales y una base de datos en conjunto. Donde las bases de datos individuales son los sitios web, es decir, el raspado web que se realiza en cada periodico para encontrar los titulares o noticias
-seleccionadas por sección en economía, política e internacional. Con las bases de datos individuales se juntan todas las de datos en una base de datos en conjunto para así seguir con la minería de texto, donde se debe limpiar el texto de minúsculas, mayúsculas, puntuación, crear un corpus a su vez crear la tabla de frecuencias de cada palabra. 
+El proyecto utiliza una base de datos creada a partir de la información recopilada mediante raspado web de varios periódicos digitales de Bolivia. Los periódicos seleccionados son:
 
-En el momento de crear la tabla de frecuencias para las palabras más influyentes, entonces se pasa al método de clasificación por Naive Bayes, este método lo que realiza es categorizar las palabras de acuerdo a cada sección del periodico. 
- 
+- La Razón: Uno de los periódicos más importantes de Bolivia, conocido por su cobertura en los ámbitos políticos, económicos y sociales del país.
+
+- El Diario: El periódico más antiguo de Bolivia, con una línea editorial conservadora, ofrece noticias relevantes en diversas áreas, incluyendo economía y política.
+
+- Economy: Especializado en noticias sobre negocios, finanzas y economía en Bolivia y Sudamérica, proporcionando análisis de mercado y noticias empresariales.
+
+- El Mundo: Fundado en Santa Cruz de la Sierra, se enfoca en noticias locales, nacionales e internacionales, con una cobertura amplia en temas de política, economía y cultura.
+
+Se recopilaron titulares de noticias de las secciones de economía, política e internacional de estos periódicos. Los datos extraídos incluyen los titulares y el texto completo de las noticias, que luego fueron procesados y analizados para identificar las palabras más influyentes y para la posterior clasificación mediante el modelo de Naive Bayes y el método CART de árboles de decisión.
 
 # 6. Metodología
 
-Para la elaboración del proyecto "Clasificador de noticias en la sección de economía, política e internacional" utilizando R, se han seguido varios pasos clave que incluyen el raspado web, la minería de texto y la aplicación del método de clasificación "Naive Bayes". A continuación, se detallan estos procesos:
+Para la elaboración del proyecto "Clasificador de noticias en la sección de economía, política e internacional" utilizando R, se han seguido varios pasos clave que incluyen el raspado web, la minería de texto y la aplicación del método de clasificación "Naive Bayes" y "cart". A continuación, se detallan estos procesos:
 
 **Raspado Web**
 
@@ -169,11 +171,22 @@ El método de clasificación Naive Bayes se utilizó para categorizar las notici
 
 - Una vez entrenado, el modelo se utilizó para clasificar nuevos titulares. Para cada titular, el modelo calculaba la probabilidad de que perteneciera a una de las categorías (economía, política, internacional) basándose en las palabras presentes en el titular.
 
+**Método CART (Árboles de Decisión)**
+
+El método CART (Classification and Regression Trees) es una técnica de clasificación y regresión que utiliza árboles de decisión para predecir el valor de una variable objetivo basada en varias variables de entrada. Los árboles de decisión son modelos predictivos que se utilizan tanto para tareas de clasificación como de regresión. En el contexto de la clasificación de noticias, el método CART se emplea de la siguiente manera:
+
+- Se construye un árbol de decisión basado en los datos de entrenamiento, donde cada nodo interno representa una prueba en una característica (por ejemplo, una palabra clave en el titular de la noticia), cada rama representa el resultado de la prueba, y cada nodo hoja representa una categoría de clase (economía, política, internacional).
+
+- El árbol se entrena utilizando los titulares tokenizados y limpiados, y se emplea la librería rpart para este propósito.
+
+- Una vez entrenado, el modelo de árbol de decisión se utiliza para clasificar nuevos titulares. Para cada titular, el árbol de decisión realiza una serie de pruebas basadas en las palabras presentes en el titular, y llega a una decisión sobre la categoría de la noticia.
+
+- Este enfoque permite una interpretación visual y clara de cómo se toman las decisiones de clasificación, facilitando la identificación de las características más influyentes en la categorización de las noticias.
+
 # 7. Resultados y análisis
 Se realiza el primer summary donde nos refleja los siguientes datos: 
 
-![Summary]("C:\\Users\\NATALY ROSARIO\\Downloads\\summary1.jpg")
-La matriz de confusión y las estadísticas proporcionan un rendimiento del modelo de clasificación. La precisión global del modelo es del 50.63 %, lo que indica que el modelo se clasifica correctamente. Sin embargo, existe una margen de precision dond se puede mejorar el modelo.
+La matriz de confusión y las estadísticas proporcionan un rendimiento del modelo de clasificación. La precisión global del modelo es del 50.63 %, lo que indica que el modelo se clasifica correctamente. Sin embargo, existe una margen de precision donde se puede mejorar el modelo.
 
 Para las seccione de economia nos muestra los siguientes resultados: Alta sensibilidad con un 92.28% nos sugiere que el modelo es muy efectivo para identificar correctamente las noticias de economía. Baja especificidad con un 23.56% indica que el modelo clasifica incorrectamente muchas noticias no económicas como económicas. La precisión balanceada con un 57.92% muestra un rendimiento razonable.
 
@@ -194,8 +207,7 @@ En la seccion de politica las palabras clave como "lider" y "anuncia" son indica
 
 # 8. Conclusiones
 
-* El clasificador de noticias basado en el método de *Naive Bayes* demostró ser eficiente en la identificación de noticias en la seccion d eeconomia, politica e internacional, con una alta sensibilidad del 92.28%. Sin embargo, mostró dificultades significativas en la clasificación de noticias internacionales, con una baja sensibilidad del 13.65%. Esto indica que mientras el modelo es bastante efectivo para ciertos tipos de noticias, requiere mejoras para ser más equilibrado y confiable en todas las categorías de las noticias.
-
+* El clasificador de noticias basado en el método de *Naive Bayes* demostró ser eficiente en la identificación de noticias en la seccion de economía, politica e internacional, con una alta sensibilidad del 92.28%. Sin embargo, mostró dificultades significativas en la clasificación de noticias internacionales, con una baja sensibilidad del 13.65%. Esto indica que mientras el modelo es bastante efectivo para ciertos tipos de noticias, requiere mejoras para ser más equilibrado y confiable en todas las categorías de las noticias.
 
 * El uso del raspado web permitió la recolección efectiva de datos de diversas fuentes, como La Razón, El Diario, Economy y El Mundo. La minería de texto, incluyendo la tokenización y la eliminación de palabras comunes, fue crucial para preparar los datos para el modelo de clasificación. 
 
@@ -209,5 +221,7 @@ En la seccion de politica las palabras clave como "lider" y "anuncia" son indica
 
 # 9. Referencias bibliográficas
 
-* https://es.wikipedia.org/wiki/La_Raz%C3%B3n_(Bolivia)
-* https://www.pub.eldiario.net/diario/
+* Wikipedia. (s.f.). Minería de datos. Wikipedia, la enciclopedia libre. Recuperado de: https://es.wikipedia.org/wiki/Miner%C3%ADa_de_datos
+* Revista Razón y Palabra. (2021). Uso de minería de datos para analizar las tendencias de consumo de noticias locales. Revista Razón y Palabra, 25(2), 45-59.
+* CONICET. (2020). Minería de Datos, Conflictos Sociales y explotación de Recursos Naturales. Consejo Nacional de Investigaciones Científicas y Técnicas. Recuperado de: https://www.conicet.gov.ar/mineria-de-datos-conflictos-sociales-y-explotacion-de-recursos-naturales/
+* Doblas, M.P. (2021) Clasificación de noticias mediante técnicas de procesamiento del lenguaje natural basadas en aprendizaje profundo. thesis. 
